@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>                
+</head>
+<body>
+    <div class="w-full min-h-full bg-zinc-900 text-white p-5">
+        <a class="text-small text-red-500 right-5 absolute" href="/">Back to Home</a>
+        <h1 class="text-2xl">All Users</h1>
+        <div class="users flex gap-3 flex-wrap">
+            <% if(users.length == 0){ %>
+                    <h3 class="text-zinc-500 mt-3">No Users Yet..</h3>
+                <% 
+            }%>
+           <% users.forEach(function(user){ %>
+            <div class="user w-52 rounded-lg p-4 bg-zinc-800">
+                <div class="w-full rounded-lg h-52 bg-zinc-600 overflow-hidden">
+                    <img class="w-full h-full object-cover" src="<%= user.image %>" alt="">
+                </div>
+                <h3 class="text-xl tracking-tighter mt-3"><%= user.name %></h3>
+                <h5 class="text-zinc-500"><%= user.email %></h5>
+                <div class="flex gap-5 text-small mt-5">
+                    <a class=" border-2 border-zinc-400 rounded-lg p-1 text-zinc-300 tracking-tighter" href="/edit/<%= user._id %>">Edit User</a>
+                    <a class=" border-2 border-zinc-400 rounded-lg p-1 text-red-500 tracking-tighter" href="/delete/<%= user._id %>">Delete User</a>
+                </div>
+            </div>
+           <% }) %>
+        </div>
+    </div>
+</body>
+</html>
